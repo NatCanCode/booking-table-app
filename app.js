@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const SECRET_KEY = 'secretkey23456';
 
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZSIsImlhdCI6MTY5MzU3MjcyOCwiZXhwIjoxNjkzNjU5MTI4fQ.03sC3gexmE5mVl2Q24UMpSdjX9RkqgKnkEm3roIIt04
 
 // Routes file
 const indexRouter = require('./routes/index');
@@ -39,10 +40,6 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
-// Routes implementation
-app.use('/api', verifyJWT, indexRouter);
-// app.use('/users', usersRouter);
-
 // Sign-up (Inscription)
 app.post('/signup', async (req, res) => {
     console.log(req.body);
@@ -56,7 +53,7 @@ app.post('/signup', async (req, res) => {
     users.push(user); // Ajoute au tableau users l'utilisateur en cours
     // TODO: Ajouter l'utilisateur dans la base de données
   
-    res.status(201).json({message: "Utilisateur créé"});
+    res.status(201).json({message: "User created."});
 });
 
 // Sign-in (Connexion)
@@ -77,6 +74,9 @@ app.post('/signin', async (req, res) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: 60 * 60 * 24 });
     res.json({message: token});
 });
+
+// Routes implementation
+app.use('/api', verifyJWT, indexRouter);
 
 // App export
 module.exports = app;

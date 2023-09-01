@@ -14,5 +14,8 @@
     "morgan": "~1.9.1",
     "pg": "^8.11.3",
     "sequelize": "^6.32.1"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4"
   }
 }
